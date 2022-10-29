@@ -9,7 +9,7 @@ jobs:
       - name: Compile LaTeX document
         uses: xu-cheng/latex-action@v2
         with:    
-          root_file: assegnazione_appalti/lettera_presentazione/lettera-di-presentazione.tex
+          root_file: "*.tex"
           glob_root_file: true
       - name: Upload PDF file
         uses: actions/upload-artifact@v3
