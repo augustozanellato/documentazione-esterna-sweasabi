@@ -1,8 +1,5 @@
 name: Release Compiled PDF 
-on:
-  push:
-    tags:
-      - '*.*.*'
+on: push
 
 jobs:
   build_latex:
@@ -43,6 +40,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }} 
-          asset_path: ./main.pdf
-          asset_name: main.pdf
+          asset_path: ./assegnazione_appalti/lettera_di_presentazione/lettera-di-presentazione.pdf
+          asset_name: lettera-di-presentazione.pdf
           asset_content_type: pdf
