@@ -11,7 +11,7 @@ jobs:
         with:
           glob_root_file: true
           latexmk_use_lualatex: true
-          root_file: assegnazione_appalti/lettera_presentazione/lettera-di-presentazione.tex
+          root_file: "assegnazione_appalti/lettera_presentazione/lettera-di-presentazione.tex"
       - name: Upload PDF file
         uses: actions/upload-artifact@v3
         with:
