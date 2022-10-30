@@ -15,12 +15,14 @@ jobs:
           root_file: "lettera-di-presentazione.tex"
           working_directory: assegnazione_appalti/lettera_presentazione/
           work_in_root_file_dir: true 
+        runs-on: self-hosted
           
       - name: Upload PDF file
         uses: actions/upload-artifact@v3
         with:
           name: PDF
           path: main.pdf
+        runs-on: self-hosted
 
       - name: Create Release
         id: create_release
@@ -32,6 +34,7 @@ jobs:
           release_name: Release ${{ github.ref }}
           draft: false
           prerelease: false
+        runs-on: self-hosted
 
       - name: Upload Release Asset
         id: upload-release-asset 
@@ -43,3 +46,4 @@ jobs:
           asset_path: ./assegnazione_appalti/lettera_di_presentazione/lettera-di-presentazione.pdf
           asset_name: lettera-di-presentazione.pdf
           asset_content_type: pdf
+        runs-on: self-hosted
