@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
 
     strategy:
-      matrix: { dir: "**/d_*/" }
+      matrix: { dir: ['**/d_*/'] }
     steps:
       - name: Set up Git repository
         uses: actions/checkout@v3
