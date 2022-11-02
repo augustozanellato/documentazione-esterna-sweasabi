@@ -27,16 +27,16 @@ jobs:
           path: "**/*.pdf"
 
   test:
-  runs-on: ubuntu-latest
-  name: Test Collect Directory Names action
-  steps:
-    - name: Get directory names
-      id: get-directory-names
-      uses: actions/collect-directory-names-by-file-glob@v1.1
-      with:
-        file-glob: '**/*.spec.ts'
-        search-directory: '/cypress'
-        unique: "true"
+    runs-on: ubuntu-latest
+    name: Test Collect Directory Names action
+    steps:
+      - name: Get directory names
+        id: get-directory-names
+        uses: actions/collect-directory-names-by-file-glob@v1.1
+        with:
+          file-glob: '**/*.spec.ts'
+          search-directory: '/cypress'
+          unique: "true"
 
-    - name: Use Directory Names
-      run: echo "Directory Names are ${{ steps.get-directory-names.outputs.directory-names}}
+      - name: Use Directory Names
+        run: echo "Directory Names are ${{ steps.get-directory-names.outputs.directory-names}}
