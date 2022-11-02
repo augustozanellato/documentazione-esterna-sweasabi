@@ -3,10 +3,10 @@ on: push
 jobs:
   build_documenti:
     runs-on: ubuntu-latest
-    needs: find_folders
+    needs: trova_cartelle
     strategy:
       matrix: 
-        dir: ${{ steps.get-directory-names.outputs.directory-names}}
+        dir: ['**/d_*/'] 
 
     steps:
 
@@ -27,7 +27,7 @@ jobs:
         with:
           path: "**/*.pdf"
 
-  find_folders:
+  trova_cartelle:
     runs-on: ubuntu-latest
     steps:
       - name: Set up Git repository
@@ -38,3 +38,6 @@ jobs:
         with:
           file-glob: '**/d_*.tex'
           unique: "true"
+
+      - name: Use Directory Names
+        run: echo "Directory Names are ${{ steps.get-directory-names.outputs.directory-names}}
