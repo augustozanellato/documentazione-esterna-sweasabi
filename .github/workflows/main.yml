@@ -6,7 +6,7 @@ jobs:
     needs: trova_cartelle
     strategy:
       matrix: 
-        dir: ['**/d_*/'] 
+        dir: ['${{ steps.get-directory-names.outputs.directory-names}}']
 
     steps:
 
