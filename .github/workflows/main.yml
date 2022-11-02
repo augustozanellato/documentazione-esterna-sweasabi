@@ -8,7 +8,7 @@ jobs:
       - name: Set up Git repository
         uses: actions/checkout@v3
 
-      - name: Compile LaTeX document
+      - name: Compile lettera-di-presentazione
         uses: xu-cheng/latex-action@v2
         with:
           glob_root_file: true
@@ -16,6 +16,26 @@ jobs:
           root_file: "lettera-di-presentazione.tex"
           working_directory: assegnazione_appalti/lettera_presentazione/
           work_in_root_file_dir: true 
+      
+      - name: Compile preventivo-costi
+        uses: xu-cheng/latex-action@v2
+        with:
+          glob_root_file: true
+          latexmk_use_lualatex: true
+          root_file: "lettera-di-presentazione.tex"
+          working_directory: assegnazione_appalti/preventivo_costi/
+          work_in_root_file_dir: true 
+      
+      - name: Compile valutazione-capitolati
+        uses: xu-cheng/latex-action@v2
+        with:
+          glob_root_file: true
+          latexmk_use_lualatex: true
+          root_file: "lettera-di-presentazione.tex"
+          working_directory: assegnazione_appalti/valutazione_capitolati/
+          work_in_root_file_dir: true 
+      
+
 
       - name: Upload PDF file
         uses: actions/upload-artifact@v3
