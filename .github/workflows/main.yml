@@ -10,7 +10,7 @@ jobs:
 
     steps:
       - name: Use Directory Names
-        run: echo "Directory Names are ${{ jobs.trova_cartelle.steps.get-directory-names.outputs.directory-names}}
+        run: echo "Directory Names are ${{ steps.get-directory-names.outputs.directory-names}}
       - name: Set up Git repository
         uses: actions/checkout@v3
 
