@@ -3,26 +3,15 @@ on: push
 jobs:
     build_documenti:
         runs-on: ubuntu-latest
-        strategy:
-
-          matrix: 
-
-            dir: ['assegnazione_appalti/d_lettera_presentazione','assegnazione_appalti/d_valutazione_capitolati'] 
-
         steps:
-
           - name: Set up Git repository
-
             uses: actions/checkout@v3
 
           - name: Compile tex
-            uses: xu-cheng/latex-action@v2
-            with:
-              glob_root_file: true
-              latexmk_use_lualatex: true
-              working_directory: ${{ matrix.dir }}
-              root_file: "d_*.tex"
-              work_in_root_file_dir: true
+            run: |
+                sudo apt-get install -y latexmk
+                shopt -s globstar
+                for d_path in ./**/d_*/; do (cd $d_path; latexmk;) done
 
           - name: Upload PDF file
             uses: actions/upload-artifact@v3
