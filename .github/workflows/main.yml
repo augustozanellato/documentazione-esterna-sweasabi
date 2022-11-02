@@ -7,7 +7,7 @@ jobs:
 
           matrix: 
 
-            dir: ['**/d_*/'] 
+            dir: ['assegnazione_appalti/d_lettera_presentazione','assegnazione_appalti/d_valutazione_capitolati'] 
 
         steps:
 
