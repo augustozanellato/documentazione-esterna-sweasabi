@@ -30,9 +30,11 @@ jobs:
     runs-on: ubuntu-latest
     name: Test Collect Directory Names action
     steps:
+      - name: Set up Git repository
+        uses: actions/checkout@v3
       - name: Get directory names
         id: get-directory-names
-        uses: actions/collect-directory-names-by-file-glob
+        uses: actions/collect-directory-names-by-file-glob@1.2.2
         with:
           file-glob: '**/*.spec.ts'
           search-directory: '/cypress'
