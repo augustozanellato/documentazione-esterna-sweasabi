@@ -1,28 +1,30 @@
-build_documenti:
-    runs-on: ubuntu-latest
+on: push
 
-    strategy:
+jobs:
+    build_documenti:
+        runs-on: ubuntu-latest
+        strategy:
 
-      matrix: 
+          matrix: 
 
-        dir: ['**/d_*/']
+            dir: ['**/d_*/'] 
 
-    steps:
+        steps:
 
-      - name: Set up Git repository
+          - name: Set up Git repository
 
-        uses: actions/checkout@v3
+            uses: actions/checkout@v3
 
-      - name: Compile tex
-        uses: xu-cheng/latex-action@v2
-        with:
-          glob_root_file: true
-          latexmk_use_lualatex: true
-          working_directory: ${{ matrix.dir }}
-          root_file: "d_*.tex"
-          work_in_root_file_dir: true
+          - name: Compile tex
+            uses: xu-cheng/latex-action@v2
+            with:
+              glob_root_file: true
+              latexmk_use_lualatex: true
+              working_directory: ${{ matrix.dir }}
+              root_file: "d_*.tex"
+              work_in_root_file_dir: true
 
-      - name: Upload PDF file
-        uses: actions/upload-artifact@v3
-        with:
-          path: "**/*.pdf"
+          - name: Upload PDF file
+            uses: actions/upload-artifact@v3
+            with:
+              path: "**/*.pdf"
