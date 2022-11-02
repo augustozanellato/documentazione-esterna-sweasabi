@@ -8,56 +8,13 @@ jobs:
     steps:
       - name: Set up Git repository
         uses: actions/checkout@v3
-
-      - name: Compile lettera-di-presentazione
-        uses: xu-cheng/latex-action@v2
-        with:
-          glob_root_file: true
-          latexmk_use_lualatex: true
-          root_file: "lettera-di-presentazione.tex"
-          working_directory: assegnazione_appalti/lettera_presentazione/
-          work_in_root_file_dir: true
-
-      - name: Upload PDF file
-        uses: actions/upload-artifact@v3
-        with:
-          path: "**/*.pdf"
-
-  build_preventivo:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Set up Git repository
-        uses: actions/checkout@v3
       
-      - name: Compile preventivo-costi
-        uses: xu-cheng/latex-action@v2
-        with:
-          glob_root_file: true
-          latexmk_use_lualatex: true
-          root_file: "preventivo-costi.tex"
-          working_directory: assegnazione_appalti/preventivo_costi/
-          work_in_root_file_dir: true 
+      - name: prova a compilare
+        run: cd assegnazione_appalti/d_lettera_presentazione
+        run: latexmk
+
       - name: Upload PDF file
         uses: actions/upload-artifact@v3
         with:
           path: "**/*.pdf"
 
-  build_valutazione:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Set up Git repository
-        uses: actions/checkout@v3
-
-      - name: Compile valutazione-capitolati
-        uses: xu-cheng/latex-action@v2
-        with:
-          glob_root_file: true
-          latexmk_use_lualatex: true
-          root_file: "valutazione-capitolati.tex"
-          working_directory: assegnazione_appalti/valutazione_capitolati/
-          work_in_root_file_dir: true 
-      
-      - name: Upload PDF file
-        uses: actions/upload-artifact@v3
-        with:
-          path: "**/*.pdf"
