@@ -6,9 +6,11 @@ jobs:
     needs: trova_cartelle
     strategy:
       matrix: 
-        dir: ['${{jobs.trova_cartelle.get-directory-names.outputs.directory-names}}']
+        dir: ['asd']
 
     steps:
+      - name: Use Directory Names
+        run: echo "Directory Names are ${{ jobs.trova_cartelle.steps.get-directory-names.outputs.directory-names}}
       - name: Set up Git repository
         uses: actions/checkout@v3
 
