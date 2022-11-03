@@ -13,7 +13,7 @@ jobs:
       - name: Builda
         run: |
           shopt -s globstar
-          for d_path in ./**/d_*/; do (cd $d_path; latexmk … &) done
+          for d_path in ./**/d_*/; do (cd $d_path; latexmk) done
 
       - name: Upload PDF file
         uses: actions/upload-artifact@v3
