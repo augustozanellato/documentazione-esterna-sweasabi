@@ -3,42 +3,19 @@ on: push
 jobs:
   build_documenti:
     runs-on: ubuntu-latest
-    needs: trova_cartelle
-    strategy:
-      matrix: 
-        dir: ['asd']
-
     steps:
-      - name: Use Directory Names
-        run: echo "Directory Names are ${{ steps.get-directory-names.outputs.directory-names}}
       - name: Set up Git repository
         uses: actions/checkout@v3
 
-      - name: Compile tex
-        uses: xu-cheng/latex-action@v2
-        with:
-          glob_root_file: true
-          latexmk_use_lualatex: true
-          working_directory: ${{ matrix.dir }}
-          root_file: "d_*.tex"
-          work_in_root_file_dir: true
+      - name: Install latexmk
+        run: sudo apt install latexmk
+      
+      - name: Builda
+        run: |
+          shopt -s globstar
+          for d_path in ./**/d_*/; do (cd $d_path; latexmk … &) done
 
       - name: Upload PDF file
         uses: actions/upload-artifact@v3
         with:
           path: "**/*.pdf"
-
-  trova_cartelle:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Set up Git repository
-        uses: actions/checkout@v3
-      - name: Get directory names
-        id: get-directory-names
-        uses: featherweight-design/collect-directory-names-by-file-glob@v1.2.2  
-        with:
-          file-glob: '**/d_*.tex'
-          unique: "true"
-
-      - name: Use Directory Names
-        run: echo "Directory Names are ${{ steps.get-directory-names.outputs.directory-names}}
