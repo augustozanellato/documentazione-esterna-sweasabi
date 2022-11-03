@@ -7,13 +7,13 @@ jobs:
       - name: Set up Git repository
         uses: actions/checkout@v3
 
-      - name: Install latexmk
+      - name: Install latexmk -y
         run: sudo apt install latexmk
       
       - name: Builda
         run: |
           shopt -s globstar
-          for d_path in ./**/d_*/; do (cd $d_path; latexmk ./d_*.tex) done
+          for d_path in ./**/d_*/; do (cd $d_path; latexmk -pdflatex=lualatex ./d_*.tex) done
 
       - name: Upload PDF file
         uses: actions/upload-artifact@v3
